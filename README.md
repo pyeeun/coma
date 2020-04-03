@@ -31,18 +31,31 @@ corona project
 - [ ] 성빈 : 사용자 / 게시판 DB 테이블 설계
 
 #
-## 회원 테이블
+## users : 사용자 테이블
 ```sql
-userid char(15) not null
-passwd char(20) not null
-birth date not null
-area point not null
-email char(40) not null
-regist_date datetime not null
-update_date datetime not null
-maskalarm_yn boolean not null
-use_yn boolean not null
-withdraw_date datetime null
+userid char(15) not null primary key  -- 아이디
+passwd char(20) not null              -- 패스워드
+birth date not null                   -- 생년월일
+area point not null                   -- 지역
+email char(40) not null               -- 이메일주소
+regist_date datetime not null         -- 가입일
+update_date datetime not null         -- 정보수정일
+maskalarm_yn boolean not null         -- 마스크알림여부
+use_yn boolean not null               -- 사용여부
+withdraw_date datetime null           -- 탈퇴일시
+```
+## notices : 공지사항 테이블
+```sql
+noticeid int not null primary key     -- 공지사항ID
+title char(50) not null               -- 제목
+content varchar(1000) not null        -- 내용
+regist_date datetime not null         -- 작성일시
+update_date datetime null             -- 수정일시
+delete_date datetime null             -- 삭제일시
+writer char(15) not null              -- 작성자
+views int not null                    -- 조회수
+file1 char(100) null                  -- 파일경로1
+file2 char(100) null                  -- 파일경로2
 ```
 
 #

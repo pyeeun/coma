@@ -31,6 +31,21 @@ corona project
 - [ ] 성빈 : 사용자 / 게시판 DB 테이블 설계
 
 #
+## 회원 테이블
+```sql
+userid char(15) not null
+passwd char(20) not null
+birth date not null
+area point not null
+email char(40) not null
+regist_date datetime not null
+update_date datetime not null
+maskalarm_yn boolean not null
+use_yn boolean not null
+withdraw_date datetime null
+```
+
+#
 ## 작업 일정
 - [ ] 2020.04.01 ~ 2020.04.07 : 화면 설계 - 예은
 - [ ] 2020.04.01 ~ 2020.04.07 : 기능 상세 설계 - 예은, 성빈

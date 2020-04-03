@@ -57,7 +57,21 @@ views int not null                    -- 조회수
 file1 char(100) null                  -- 파일경로1
 file2 char(100) null                  -- 파일경로2
 ```
-
+## q&a : 문의 테이블
+```sql
+noticeid int not null primary key     -- 공지사항ID
+title char(50) not null               -- 제목
+content varchar(1000) not null        -- 내용
+regist_date datetime not null         -- 작성일시
+update_date datetime null             -- 수정일시
+delete_date datetime null             -- 삭제일시
+writer char(15) not null              -- 작성자
+views int not null                    -- 조회수
+file1 char(100) null                  -- 파일경로1
+file2 char(100) null                  -- 파일경로2
+passwd char(20) null                  -- 패스워드
+category char(20) not null            -- 
+```
 #
 ## 작업 일정
 - [ ] 2020.04.01 ~ 2020.04.07 : 화면 설계 - 예은

@@ -1,12 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="utf-8">
+<title>Login</title>
+<style>
+
+</style>
 </head>
 <body>
-
+<input type="text" name="userid" placeholder="아이디"/><br>
+<input type="password" name="passwd" placeholder="패스워드"/><br>
+<input type="submit" value="로그인"/>
 </body>
 </html>

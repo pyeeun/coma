@@ -10,13 +10,10 @@
 </style>
 </head>
 <body>
-	<div class="login_form">
-		<form method="post" action="check_login.jsp" name="form1">
-			<input type="text" name="userid" placeholder="아이디"/><br>
-			<input type="password" name="passwd" placeholder="패스워드"/><br>
-			<input type="submit" value="로그인"/>
-		</form>
-	</div>
+<form method="post" action="check_login.jsp" name="form1">
+<input type="text" name="userid" placeholder="아이디"/><br>
+<input type="password" name="passwd" placeholder="패스워드"/><br>
+<input type="submit" value="로그인"/>
 </form>
 <%
 	String msg=request.getParameter("msg");

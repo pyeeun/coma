@@ -17,7 +17,6 @@
 			<input type="submit" value="로그인"/>
 		</form>
 	</div>
-</form>
 <%
 	String msg=request.getParameter("msg");
 	if(msg!=null && msg.equals("0"))

@@ -10,8 +10,12 @@
 </style>
 </head>
 <body>
-<input type="text" name="userid" placeholder="아이디"/><br>
-<input type="password" name="passwd" placeholder="패스워드"/><br>
-<input type="submit" value="로그인"/>
+	<div class="login_form">
+		<form name="" action="" method="">
+			<input type="text" name="userid" placeholder="아이디"/><br>
+			<input type="password" name="passwd" placeholder="패스워드"/><br>
+			<input type="submit" value="로그인"/>
+		</form>
+	</div>
 </body>
 </html>

@@ -1,8 +1,20 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-latest.js"></script>
+<script>
+$(document).ready(function() {
+	$(".login-box").remove();
+});
+
+function showLogin() {
+	$(".login-box").show();
+}
+</script>
 <style>
 html, body 
 {
@@ -116,26 +128,61 @@ html, body
  	top: -10px;
  	left: 33px;
 }
+
+.login-box
+{
+	z-index: 99;
+	position: absolute;
+	border:1px solid gray;
+	background-color: #FFFFFF;
+	width: 500px;
+	height: 500px;
+	top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#login-form
+{
+	margin-top: 100px;
+	text-align: center;
+}
+
+#login-form input
+{
+	width: 200px;
+	height : 40px;
+	margin-top: 10px;
+}
 </style>
 </head>
 <body>
 	<div class="header">
-		<a href="login.jsp">로그인</a>
-		<a href="#">회원가입</a>
+		<a href="javascript:void(0);" onclick="showLogin()">로그인</a>
+		<a href="javascript:void(0);" onclick="showRegister()">회원가입</a>
+	</div>
+	<div class="login-box">
+		<form name="" id="login-form" action="" method="">
+			<input type="text" name="userid" placeholder="아이디"/><br>
+			<input type="password" name="passwd" placeholder="패스워드"/><br>
+			<input type="submit" value="로그인"/>
+		</form>
 	</div>
 	<div class="contents">
 		<div class="contents-box">
 			<p id="logo"><a href="#" style="text-decoration: none; color: #000">C O M A</a></p>
-			<input type="text" id="keyword" placeholder="서울특별시 은평구 진관동"/>
+			<input type="text" id="keyword" placeholder="서울시 은평구 진관동"/>
 			<button type="button" id="enter">Enter!</button>
+		</div>
+		<div class="modal" style="display: none">
+		
 		</div>
 	</div>
 	<div class="footer">
-		<a href="#">공지사항</a>/
-		<a href="#">Q&A</a>/
-		<a href="#">이용약관</a>/
-		<a href="#">개인정보처리방침</a>
-		<p>Copyright ⓒ 2020 pyeeun & seongbins All Rights Reserved</p>
+		<a href="#">공지사항</a>
+		<a href="#">Q&A</a>
+		<a href="#">이용약관</a>
+		<a href="#">개인정보처리취급방침</a>
+		<p>Copyright ⓒ 2020 pyeeun & seongbins All Rights Reserved</p>
 	</div>
 </body>
 </html>

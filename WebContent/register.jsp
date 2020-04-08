@@ -31,7 +31,7 @@
 </head>
 <body>
 	<div class="login_form">
-		<form method="post" action="" name="form1" id="register-form">
+		<form method="post" action="user_register.jsp" name="form1" id="register-form">
 			<p style="font-size: 28px; margin-bottom: 0px; padding-bottom: 10px;">C O M A</p>
 			<input type="text" name="userid" class="rgst-input" placeholder="아이디"/><br>
 			<input type="password" name="passwd" class="rgst-input" placeholder="비밀번호"/><br>

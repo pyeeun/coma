@@ -19,7 +19,7 @@
 	{
 		response.sendRedirect("register.jsp?msg=0");
 	}*/
-	request.setAttribute("user", Register.getDBList());
+	//request.setAttribute("user", Register.getDBList());
 	
 	if(Register.insertDB(users))
 		response.sendRedirect("index.html");

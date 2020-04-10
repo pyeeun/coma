@@ -44,5 +44,14 @@
 			<input type="submit" id="btn-register" value="회원가입"/>
 		</form>
 	</div>
+	
+	<%
+		String msg=request.getParameter("msg");
+		if(msg!=null && msg.equals("0"))
+		{
+			out.println("<script>alert('비밀번호 입력을 확인해주세요.');</script>");
+		}
+	%>
+	
 </body>
 </html>

@@ -41,11 +41,11 @@
 		String msg=request.getParameter("msg");
 		if(msg!=null && msg.equals("0"))
 		{
-			out.println("<script>alert('비밀번호를 확인해주세요.');</script>");
+			out.println("<script>alert('비밀번호 입력을 확인해주세요.');</script>");
 		}
 		else if(msg!=null && msg.equals("-1"))
 		{
-			out.println("<script>alert('ID를 확인해주세요.');</script>");
+			out.println("<script>alert('ID 입력을 확인해주세요.');</script>");
 		}
 	%>
 </body>

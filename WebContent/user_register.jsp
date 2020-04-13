@@ -4,15 +4,28 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 
 <jsp:useBean id="Register" scope="page" class="coma.RegisterBean"/>
-<jsp:useBean id="users" class="coma.Users" />
-<jsp:setProperty name="Users" property="*" />
+<jsp:useBean id="users" class="coma.Users"/>
+<jsp:setProperty name="users" property="*"/>
 
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>user_register</title>
 </head>
 <body>
-
+<%
+	/*String msg="";
+	if(!users.getPasswd().equals(users.getPasswd2()))
+	{
+		response.sendRedirect("register.jsp?msg=0");
+	}*/
+	
+	//request.setAttribute("users", Register.getDBList());
+	
+	if(Register.insertDB(users))
+		response.sendRedirect("index.html");
+	else
+		throw new Exception("DB Insertion Error");
+%>
 </body>
 </html>

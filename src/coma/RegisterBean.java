@@ -51,13 +51,24 @@ public class RegisterBean {
 		}
 	}
 	
-	public boolean insertDB()
+	public boolean insertDB(Users users)
 	{
 		connect();
-		String sql = "insert into users value(?,?,?,?,?,sysdate,sysdate,?,?,null)";
+		String sql = "insert into users value(?,?,?,?,?,sysdate(),sysdate(),?,true,null)";
 		try
 		{
+			
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, users.getUserid());
+			pstmt.setString(2, users.getPasswd());
+			pstmt.setString(3, users.getBirth());
+			pstmt.setString(4, users.getArea());
+			pstmt.setString(5, users.getEmail());
+			
+			if(users.getMaskalarm_yn() == null)
+				pstmt.setBoolean(6, false);
+			else
+				pstmt.setBoolean(6, true);
 			pstmt.executeUpdate();
 		}
 		catch(SQLException e)
@@ -70,5 +81,39 @@ public class RegisterBean {
 			disconnect();
 		}
 		return true;
+	}
+	
+	public ArrayList<Users> getDBList()
+	{
+		connect();
+		ArrayList<Users> users = new ArrayList<Users>();
+		String sql = "select * from users order by userid desc";
+		
+		try
+		{
+			pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next())
+			{
+				Users user = new Users();
+				user.setUserid(rs.getString("userid"));
+				user.setPasswd(rs.getString("passwd"));
+				user.setBirth(rs.getString("birth"));
+				user.setArea(rs.getString("area"));
+				user.setEmail(rs.getString("email"));
+				user.setMaskalarm_yn(rs.getBoolean("maskalarm_yn"));
+				users.add(user);
+			}
+			rs.close();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			disconnect();
+		}
+		return users;
 	}
 }

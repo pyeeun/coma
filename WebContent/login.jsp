@@ -6,6 +6,14 @@
 <meta charset="utf-8">
 <title>Login</title>
 <style>
+	html, body, input, p, span, div
+	{
+		font-family: 'Noto Sans KR', sans-serif;
+	}
+	#login-form
+	{
+		margin-top: 20px;
+	}
 	.lgn-input
 	{
 		width: 220px;
@@ -26,15 +34,27 @@
 		color: #FFFFFF;
 		cursor: pointer;
 	}
+	#btn-naver-login
+	{
+		width: 250px;
+		height: 40px;
+		margin-top: 15px;
+		background-color: #FFFFFF;
+		border: 1px solid #DDDDDD;
+		font-size: 14px;
+		color: #00CA2E;
+		cursor: pointer;
+	}
 </style>
 </head>
 <body>
-	<div class="login_form">
+	<div>
 		<form method="post" action="check_login.jsp" name="form1" id="login-form">
-			<p style="font-size: 40px; margin-bottom: 0px; padding-bottom: 10px;">C O M A</p>
+			<img src="images\logo.png" width="200px"/>
 			<input type="text" name="userid" class="lgn-input" placeholder="아이디"/><br>
-			<input type="password" name="passwd" class="lgn-input" placeholder="패스워드"/><br>
+			<input type="password" name="passwd" class="lgn-input" placeholder="비밀번호"/><br>
 			<input type="submit" id="btn-login" value="로그인"/>
+			<input type="button" id="btn-naver-login" value="네이버로 로그인">
 		</form>
 	</div>
 	<%

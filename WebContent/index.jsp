@@ -4,18 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>COMA</title>
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script>
-<script>
-	$(document).ready(function() 
-	{
-		$(".login-box").hide();
-	});
-</script>
 <style>
 	html, body, .wrap 
 	{
@@ -48,10 +42,6 @@
 		display: table;
 		margin: auto;
 		padding: auto;
-		/*
-		background-image: url("https://images.unsplash.com/photo-1520643187271-06df1162815e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1266&q=80");
-		background-repeat: no-repeat;
-		background-size: cover;*/
 	}
 	.contents-box
 	{
@@ -59,7 +49,6 @@
 	    vertical-align: middle;
 		text-align: center;
 	}
-	
 	.footer
 	{
 		height: 100px;
@@ -80,6 +69,12 @@
 		padding: 0;
 	}
 	
+	#logo
+	{
+		font-size: 60px;
+		margin: 0px 0px 15px 0px;
+		color: #000000;
+	}
 	#keyword
 	{
 		width: 500px;
@@ -96,14 +91,6 @@
 		background-position: 17px 12px;
 	    background-repeat: no-repeat;
 	}
-	
-	#logo
-	{
-		font-size: 60px;
-		margin: 0px 0px 15px 0px;
-		color: #000000;
-	}
-	
 	#enter
 	{
 		position: absolute;
@@ -129,7 +116,6 @@
 	 	top: -10px;
 	 	left: 33px;
 	}
-	
 	.login-box
 	{
 		position: absolute;
@@ -137,7 +123,20 @@
 		border: 1px solid #EEEEEE;
 		text-align: center;
 		width: 400px;
-		height: 380px;
+		height: 400px;
+		top: 50%;
+	    left: 50%;
+	    transform: translate(-50%, -50%);
+	    z-index: 99;
+	}
+	.register-box
+	{
+		position: absolute;
+		background-color: #FFFFFF;
+		border: 1px solid #EEEEEE;
+		text-align: center;
+		width: 400px;
+		height: 600px;
 		top: 50%;
 	    left: 50%;
 	    transform: translate(-50%, -50%);
@@ -152,20 +151,6 @@
 		font-size: 20px;
 		background-color: #FFFFFF;
 		cursor: pointer;
-	}
-	
-	.register-box
-	{
-		position: absolute;
-		background-color: #FFFFFF;
-		border: 1px solid #EEEEEE;
-		text-align: center;
-		width: 400px;
-		height: 600px;
-		top: 50%;
-	    left: 50%;
-	    transform: translate(-50%, -50%);
-	    z-index: 99;
 	}
 </style>
 <script>
@@ -213,7 +198,10 @@
 		</div>
 		<div class="contents">
 			<div class="contents-box">
-				<p id="logo"><a href="#" style="text-decoration: none; color: #000">C O M A</a></p>
+				<a href="index.jsp" id="logo" style="text-decoration: none; color: #000">
+					<img src="images\logo.png" width="300px"/>
+				</a>
+				<br>
 				<input type="text" id="keyword" placeholder="서울특별시 은평구 진관동"/>
 				<button type="button" id="enter">Enter!</button>
 			</div>

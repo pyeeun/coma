@@ -34,6 +34,12 @@ corona project
 - [ ] 예은 : AWS MYSQL 설치
 
 #
+## 2020.04.14 Task 정리
+- [ ] DB 테이블 CREATE문 정리해서 아래에 작성해두기
+- [ ] 회원가입 시, 아이디 입력 후 포커스 아웃되면 아이디 중복검사하여 
+      중복일 경우 포커스 다시 아이디로 오도록 구현하기
+- [ ] DB 연결 & 연결해제 로직 공통 함수로 빼기 => java 파일 별도로 구현 후 필요한 곳에 import
+#
 ## users : 사용자 테이블
 ```sql
 userid char(15) not null primary key  -- 아이디

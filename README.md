@@ -84,7 +84,7 @@ category char(20) not null            -- 카테고리
 ```
 
 --------------------------------------------------
-
+```sql
 create table users
 (
    userid char(15) not null primary key,
@@ -99,7 +99,8 @@ create table users
     use_yn boolean not null,
     withdraw_date datetime null
 );
-
+```
+```sql
 create table notices
 (
    noticeid int not null primary key,
@@ -113,7 +114,8 @@ create table notices
     file1 char(100) null,
     file2 char(100) null
 );
-
+```
+```sql
 create table Q_A
 (
    noticeid int not null primary key,
@@ -129,7 +131,7 @@ create table Q_A
     passwd char(20) null,
     category char(20) not null
 );
-
+```
 
 --------------------------------------------------
 #

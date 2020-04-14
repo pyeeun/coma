@@ -116,33 +116,18 @@
 	 	top: -10px;
 	 	left: 33px;
 	}
-	.login-box
+	.login-box, .register-box, .terms-box
 	{
 		position: absolute;
 		background-color: #FFFFFF;
 		border: 1px solid #EEEEEE;
 		text-align: center;
-		width: 400px;
-		height: 400px;
 		top: 50%;
 	    left: 50%;
 	    transform: translate(-50%, -50%);
 	    z-index: 99;
 	}
-	.register-box
-	{
-		position: absolute;
-		background-color: #FFFFFF;
-		border: 1px solid #EEEEEE;
-		text-align: center;
-		width: 400px;
-		height: 600px;
-		top: 50%;
-	    left: 50%;
-	    transform: translate(-50%, -50%);
-	    z-index: 99;
-	}
-	#btn-lgn-close, #btn-rgst-close
+	#btn-lgn-close, #btn-rgst-close, #btn-terms-close
 	{
 		margin-top: 10px;
 		margin-left: 350px;
@@ -166,10 +151,17 @@
 		$("body").css("background-color","#5D5D5D");
 		$(".register-box").show();
 	}
+	function showTerms()
+	{
+		$(".wrap").hide();
+		$("body").css("background-color","#5D5D5D");
+		$(".terms-box").show();
+	}
 	$(document).ready(function() 
 	{
 		$(".login-box").hide();
 		$(".register-box").hide();
+		$(".terms-box").hide();
 		
 		// closing login form
 		$("#btn-lgn-close").click(function() 
@@ -185,6 +177,14 @@
 			$(".wrap").show();
 			$("body").css("background-color","#FFFFFF");
 			$(".register-box").hide();
+		});
+		
+		// closing terms form
+		$("#btn-terms-close").click(function() 
+		{
+			$(".wrap").show();
+			$("body").css("background-color","#FFFFFF");
+			$(".terms-box").hide();
 		});
 	});
 	
@@ -209,18 +209,22 @@
 		<div class="footer">
 			<a href="#">공지사항</a>/
 			<a href="#">Q&A</a>/
-			<a href="#">이용약관</a>/
+			<a href="javascript:void(0);" onclick="showTerms()">이용약관</a>/
 			<a href="#">개인정보처리방침</a>
 			<p>Copyright ⓒ 2020 pyeeun & seongbins All Rights Reserved</p>
 		</div>
 	</div>
-	<div class="login-box">
+	<div class="login-box" style="width:400px; height:400px; text-align: center;">
 		<input type="button" id="btn-lgn-close" value="X"/>
 		<jsp:include page="login.jsp"/>
 	</div>
-	<div class="register-box">
+	<div class="register-box" style="width:400px; height:600px">
 		<input type="button" id="btn-rgst-close" value="X"/>
 		<jsp:include page="register.jsp"/>
+	</div>
+	<div class="terms-box" style="width:600px; height:700px">
+		<input type="button" id="btn-terms-close" value="X" style="margin-left: 550px"/>
+		<jsp:include page="terms.jsp"/>
 	</div>
 </body>
 </html>

@@ -82,6 +82,53 @@ file2 char(100) null                  -- 파일경로2
 passwd char(20) null                  -- 패스워드
 category char(20) not null            -- 카테고리
 ```
+
+--------------------------------------------------
+create table users
+(
+   userid char(15) not null primary key,
+    passwd char(20) not null,
+    birth date not null,
+    latitude double not null,
+    longitude double not null,
+    email char(40) not null,
+    register_date datetime not null,
+    update_date datetime not null,
+    maskalarm_yn boolean not null,
+    use_yn boolean not null,
+    withdraw_date datetime null
+);
+
+create table notices
+(
+   noticeid int not null primary key,
+    title char(50) not null,
+    content varchar(1000) not null,
+    regist_date datetime not null,
+    update_date datetime null,
+    delete_date datetime null,
+    writer char(15) not null,
+   views int not null,
+    file1 char(100) null,
+    file2 char(100) null
+);
+
+create table Q_A
+(
+   noticeid int not null primary key,
+    title char(50) not null,
+    content varchar(1000) not null,
+    regist_date datetime not null,
+    update_date datetime null,
+    delete_date datetime null,
+    writer char(15) not null,
+   views int not null,
+    file1 char(100) null,
+    file2 char(100) null,
+    passwd char(20) null,
+    category char(20) not null
+);
+--------------------------------------------------
 #
 ## 작업 일정
 - [x] 2020.04.01 ~ 2020.04.07 : 화면 설계 - 예은

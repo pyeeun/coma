@@ -31,7 +31,8 @@ corona project
 - [x] 성빈 : 사용자 / 게시판 DB 테이블 설계
 - [x] 예은 : 로그인 / 회원가입 FRONT 구현
 - [x] 성빈 : 로그인 / 회원가입 BACK 구현
-- [ ] 예은 : AWS MYSQL 설치
+- [x] 예은 : AWS MYSQL 설치
+- [ ] 예은 : CREATE DATABASE & TABLE
 
 #
 ## 2020.04.14 Task 정리

@@ -3,73 +3,32 @@ package coma;
 import java.sql.*;
 import java.util.*;
 import coma.Users;
+import coma.connection;
 
 public class RegisterBean {
 	
-	Connection conn = null;
-	PreparedStatement pstmt = null;
-	//MySQL 연결
-	String jdbc_driver = "com.mysql.jdbc.Driver";
-	String jdbc_url = "jdbc:mysql://localhost:3306/jspdb?serverTimezone=UTC";
-	
-	void connect()
-	{
-		try
-		{
-			Class.forName(jdbc_driver);
-			conn = DriverManager.getConnection(jdbc_url, "root", "1234");
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
-	
-	void disconnect()
-	{
-		if(pstmt != null)
-		{
-			try
-			{
-				pstmt.close();
-			}
-			catch (SQLException e)
-			{
-				e.printStackTrace();
-			}
-		}
-		if(conn != null)
-		{
-			try
-			{
-				conn.close();
-			}
-			catch (SQLException e)
-			{
-				e.printStackTrace();
-			}
-		}
-	}
+	connection con = new connection();
 	
 	public boolean insertDB(Users users)
 	{
-		connect();
-		String sql = "insert into users value(?,?,?,?,?,sysdate(),sysdate(),?,true,null)";
+		con.connect();
+		String sql = "insert into users value(?,?,?,?,?,?,sysdate(),sysdate(),?,true,null)";
 		try
 		{
 			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, users.getUserid());
-			pstmt.setString(2, users.getPasswd());
-			pstmt.setString(3, users.getBirth());
-			pstmt.setString(4, users.getArea());
-			pstmt.setString(5, users.getEmail());
+			con.pstmt = con.conn.prepareStatement(sql);
+			con.pstmt.setString(1, users.getUserid());
+			con.pstmt.setString(2, users.getPasswd());
+			con.pstmt.setString(3, users.getBirth());
+			con.pstmt.setDouble(4, 132.62);
+			con.pstmt.setDouble(5, 84.12);;
+			con.pstmt.setString(6, users.getEmail());
 			
 			if(users.getMaskalarm_yn() == null)
-				pstmt.setBoolean(6, false);
+				con.pstmt.setBoolean(7, false);
 			else
-				pstmt.setBoolean(6, true);
-			pstmt.executeUpdate();
+				con.pstmt.setBoolean(7, true);
+			con.pstmt.executeUpdate();
 		}
 		catch(SQLException e)
 		{
@@ -78,21 +37,21 @@ public class RegisterBean {
 		}
 		finally
 		{
-			disconnect();
+			con.disconnect();
 		}
 		return true;
 	}
 	
 	public ArrayList<Users> getDBList()
 	{
-		connect();
+		con.connect();
 		ArrayList<Users> users = new ArrayList<Users>();
 		String sql = "select * from users order by userid desc";
 		
 		try
 		{
-			pstmt = conn.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();
+			con.pstmt = con.conn.prepareStatement(sql);
+			ResultSet rs = con.pstmt.executeQuery();
 			while(rs.next())
 			{
 				Users user = new Users();
@@ -112,8 +71,44 @@ public class RegisterBean {
 		}
 		finally
 		{
-			disconnect();
+			con.disconnect();
 		}
 		return users;
+	}
+	
+	public boolean IDcheck(String id)
+	{
+		con.connect();
+		String sql = "select userid from users";
+		int answer = 0;
+		try
+		{
+			con.pstmt = con.conn.prepareStatement(sql);
+			ResultSet rs = con.pstmt.executeQuery();
+			String db_id;
+			while(rs.next())
+			{
+				db_id = rs.getString("userid");
+				if(db_id.equals(id))
+				{	
+					answer = 1;
+					break;
+				}
+			}
+			rs.close();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			con.disconnect();
+		}
+		
+		if(answer == 1)
+			return true;
+		else
+			return false;
 	}
 }

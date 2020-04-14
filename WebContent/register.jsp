@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<jsp:useBean id="Register" scope="page" class="coma.RegisterBean"/>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -14,7 +16,12 @@
 	// id check
 	function idcheck()
 	{
-		
+		String userid = $("userid").val();
+		if(Register.IDcheck(userid) == true)
+		{
+			alert('중복된 아이디가 있습니다.');
+			return;
+		}
 	}
 	
 	// form data validation check
@@ -78,14 +85,6 @@
 			<input type="submit" id="btn-register" value="회원가입"/>
 		</form>
 	</div>
-	
-	<%
-		String msg=request.getParameter("msg");
-		if(msg!=null && msg.equals("0"))
-		{
-			out.println("<script>alert('비밀번호 입력을 확인해주세요.');</script>");
-		}
-	%>
 	
 </body>
 </html>

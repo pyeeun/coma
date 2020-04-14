@@ -14,12 +14,6 @@
 </head>
 <body>
 <%
-	/*String msg="";
-	if(!users.getPasswd().equals(users.getPasswd2()))
-	{
-		response.sendRedirect("register.jsp?msg=0");
-	}*/
-	
 	//request.setAttribute("users", Register.getDBList());
 	
 	if(Register.insertDB(users))

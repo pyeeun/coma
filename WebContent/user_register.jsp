@@ -17,7 +17,7 @@
 	//request.setAttribute("users", Register.getDBList());
 	
 	if(Register.insertDB(users))
-		response.sendRedirect("index.html");
+		response.sendRedirect("index.jsp");
 	else
 		throw new Exception("DB Insertion Error");
 %>

@@ -84,6 +84,7 @@ category char(20) not null            -- 카테고리
 ```
 
 --------------------------------------------------
+
 create table users
 (
    userid char(15) not null primary key,
@@ -128,6 +129,8 @@ create table Q_A
     passwd char(20) null,
     category char(20) not null
 );
+
+
 --------------------------------------------------
 #
 ## 작업 일정

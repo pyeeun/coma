@@ -4,17 +4,11 @@ public class Users {
 	
 	private String userid;
 	private String passwd;
-	
 	private String passwd2;
-	
 	private String birth;
 	private String area;
 	private String email;
-	//private String register_date;
-	//private String update_date;
 	private Boolean maskalarm_yn;
-	//private Boolean use_yn;
-	//private String withdraw_date;
 	
 	public String getUserid() {
 		return userid;

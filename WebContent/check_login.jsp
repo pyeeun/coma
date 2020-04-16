@@ -17,7 +17,7 @@
 	String msg = "";
 	if(check == 1)
 	{
-		msg = "index.html";
+		msg = "index.jsp";
 	}
 	else if(check == 0)
 	{

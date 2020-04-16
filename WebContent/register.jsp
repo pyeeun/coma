@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<jsp:useBean id="Register" scope="page" class="coma.RegisterBean"/>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -14,7 +16,21 @@
 	// id check
 	function idcheck()
 	{
+		var userid = $("#userid").val();
+		<%	
+			//String id = request.getParameter("userid").trim();
+			boolean a = Register.IDcheck("id");
+		%>
+		var flag = <%= a %>;
 		
+		if(flag == true)
+		{
+			alert('중복된 아이디가 있습니다.');
+		}
+		else
+		{
+			alert('사용 가능한 아이디입니다.');
+		}
 	}
 	
 	// form data validation check
@@ -79,13 +95,12 @@
 		</form>
 	</div>
 	
-	<%
-		String msg=request.getParameter("msg");
-		if(msg!=null && msg.equals("0"))
-		{
-			out.println("<script>alert('비밀번호 입력을 확인해주세요.');</script>");
-		}
-	%>
-	
+	<iframe width=800 name="iframe" width="0" height="0" frameborder="0" scrolling="no"></iframe>
+	<form method="post" action="" name="form2"></form>
+	<script language=javascript>
+		form2.target="iframe";
+		form2.action="register.jsp?name="+userid;
+		form2.submit();
+	</script>
 </body>
 </html>

@@ -1,68 +1,23 @@
 package coma;
 
 import java.sql.*;
-import java.util.*;
+import coma.connection;
 
 public class LoginBean {
-
-	Connection conn = null;
-	PreparedStatement pstmt = null;
-	//MySQL 연결
-	String jdbc_driver = "com.mysql.jdbc.Driver";
-	String jdbc_url = "jdbc:mysql://localhost:3306/jspdb?serverTimezone=UTC";
-	
-	void connect()
-	{
-		try
-		{
-			Class.forName(jdbc_driver);
-			conn = DriverManager.getConnection(jdbc_url, "root", "1234");
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
-	
-	void disconnect()
-	{
-		if(pstmt != null)
-		{
-			try
-			{
-				pstmt.close();
-			}
-			catch (SQLException e)
-			{
-				e.printStackTrace();
-			}
-		}
-		if(conn != null)
-		{
-			try
-			{
-				conn.close();
-			}
-			catch (SQLException e)
-			{
-				e.printStackTrace();
-			}
-		}
-	}
-
+	connection con = new connection();
 	
 	public int check_login(String id, String passwd)
 	{
-		connect();
+		con.connect();
 		String db_passwd;
 		String sql = "select passwd from users where userid=?";
 		int x = -1;
 		
 		try
 		{
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1,  id);
-			ResultSet rs = pstmt.executeQuery();
+			con.pstmt = con.conn.prepareStatement(sql);
+			con.pstmt.setString(1,  id);
+			ResultSet rs = con.pstmt.executeQuery();
 			
 			if(rs.next())
 			{
@@ -81,7 +36,7 @@ public class LoginBean {
 		}
 		finally
 		{
-			disconnect();
+			con.disconnect();
 		}
 		
 		return x;

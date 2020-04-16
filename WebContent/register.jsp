@@ -11,15 +11,23 @@
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script>
-<script>
 
+<iframe width=800 name="por" width="0" height="0" frameborder="0" scrolling="no"></iframe>
+<form method="post" action="" name="form2"></form>
+
+<script language=javascript>
 	// id check
 	function idcheck()
 	{
 		var userid = $("#userid").val();
+		var url = "register.jsp?name="+userid;
+		//alert(url);
+		form2.target="por";
+		form2.action = url;
+		form2.submit();
 		<%	
-			//String id = request.getParameter("userid").trim();
-			boolean a = Register.IDcheck("id");
+			String id = request.getParameter("name");
+			boolean a = Register.IDcheck(id);
 		%>
 		var flag = <%= a %>;
 		
@@ -94,13 +102,5 @@
 			<input type="submit" id="btn-register" value="회원가입"/>
 		</form>
 	</div>
-	
-	<iframe width=800 name="iframe" width="0" height="0" frameborder="0" scrolling="no"></iframe>
-	<form method="post" action="" name="form2"></form>
-	<script language=javascript>
-		form2.target="iframe";
-		form2.action="register.jsp?name="+userid;
-		form2.submit();
-	</script>
 </body>
 </html>

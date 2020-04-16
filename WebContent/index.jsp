@@ -222,8 +222,8 @@
 		<input type="button" id="btn-rgst-close" value="X"/>
 		<jsp:include page="register.jsp"/>
 	</div>
-	<div class="terms-box" style="width:600px; height:700px">
-		<input type="button" id="btn-terms-close" value="X" style="margin-left: 550px"/>
+	<div class="terms-box" style="width:800px; height:720px">
+		<input type="button" id="btn-terms-close" value="X" style="margin-left: 750px"/>
 		<jsp:include page="terms.jsp"/>
 	</div>
 </body>

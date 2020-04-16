@@ -31,7 +31,8 @@ corona project
 - [x] 성빈 : 사용자 / 게시판 DB 테이블 설계
 - [x] 예은 : 로그인 / 회원가입 FRONT 구현
 - [x] 성빈 : 로그인 / 회원가입 BACK 구현
-- [ ] 예은 : AWS MYSQL 설치
+- [x] 예은 : AWS MYSQL 설치
+- [ ] 예은 : CREATE DATABASE & TABLE
 
 #
 ## 2020.04.14 Task 정리
@@ -82,6 +83,58 @@ file2 char(100) null                  -- 파일경로2
 passwd char(20) null                  -- 패스워드
 category char(20) not null            -- 카테고리
 ```
+
+--------------------------------------------------
+```sql
+create table users
+(
+   userid char(15) not null primary key,
+    passwd char(20) not null,
+    birth date not null,
+    latitude double not null,
+    longitude double not null,
+    email char(40) not null,
+    register_date datetime not null,
+    update_date datetime not null,
+    maskalarm_yn boolean not null,
+    use_yn boolean not null,
+    withdraw_date datetime null
+);
+```
+```sql
+create table notices
+(
+   noticeid int not null primary key,
+    title char(50) not null,
+    content varchar(1000) not null,
+    regist_date datetime not null,
+    update_date datetime null,
+    delete_date datetime null,
+    writer char(15) not null,
+   views int not null,
+    file1 char(100) null,
+    file2 char(100) null
+);
+```
+```sql
+create table Q_A
+(
+   noticeid int not null primary key,
+    title char(50) not null,
+    content varchar(1000) not null,
+    regist_date datetime not null,
+    update_date datetime null,
+    delete_date datetime null,
+    writer char(15) not null,
+   views int not null,
+    file1 char(100) null,
+    file2 char(100) null,
+    passwd char(20) null,
+    category char(20) not null
+);
+```
+
+--------------------------------------------------
 #
 ## 작업 일정
 - [x] 2020.04.01 ~ 2020.04.07 : 화면 설계 - 예은

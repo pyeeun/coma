@@ -16,11 +16,20 @@
 	// id check
 	function idcheck()
 	{
-		String userid = $("userid").val();
-		if(Register.IDcheck(userid) == true)
+		var userid = $("#userid").val();
+		<%	
+			//String id = request.getParameter("userid").trim();
+			boolean a = Register.IDcheck("id");
+		%>
+		var flag = <%= a %>;
+		
+		if(flag == true)
 		{
 			alert('중복된 아이디가 있습니다.');
-			return;
+		}
+		else
+		{
+			alert('사용 가능한 아이디입니다.');
 		}
 	}
 	
@@ -86,5 +95,12 @@
 		</form>
 	</div>
 	
+	<iframe width=800 name="iframe" width="0" height="0" frameborder="0" scrolling="no"></iframe>
+	<form method="post" action="" name="form2"></form>
+	<script language=javascript>
+		form2.target="iframe";
+		form2.action="register.jsp?name="+userid;
+		form2.submit();
+	</script>
 </body>
 </html>

@@ -17,28 +17,39 @@
 
 <script language=javascript>
 	// id check
+	$(document).ready(function()
+	{
+		<%   
+			String id = request.getParameter("name");
+			boolean a = Register.IDcheck(id);
+		%>
+	    var flag = <%= a %>;
+	    var userid = "<%= id %>";
+	    
+	    console.log(flag);
+	    console.log(userid);
+	    
+	    if(userid != "null")
+	    {
+	    	if(flag == true)
+	    	{
+   	 			alert('중복된 아이디가 있습니다.');
+    		}
+	    	else
+	    	{
+	    		alert('사용 가능한 아이디입니다.');
+	    	}
+	    }
+   	});
+
 	function idcheck()
 	{
 		var userid = $("#userid").val();
 		var url = "register.jsp?name="+userid;
-		//alert(url);
+		console.log(url);
 		form2.target="por";
 		form2.action = url;
 		form2.submit();
-		<%	
-			String id = request.getParameter("name");
-			boolean a = Register.IDcheck(id);
-		%>
-		var flag = <%= a %>;
-		
-		if(flag == true)
-		{
-			alert('중복된 아이디가 있습니다.');
-		}
-		else
-		{
-			alert('사용 가능한 아이디입니다.');
-		}
 	}
 	
 	// form data validation check

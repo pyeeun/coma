@@ -79,21 +79,16 @@ public class RegisterBean {
 	public boolean IDcheck(String id)
 	{
 		con.connect();
-		String sql = "select userid from users";
+		String sql = "select userid from users where userid=?";
 		int answer = 0;
 		try
 		{
 			con.pstmt = con.conn.prepareStatement(sql);
+			con.pstmt.setString(1, id);
 			ResultSet rs = con.pstmt.executeQuery();
-			String db_id;
 			while(rs.next())
 			{
-				db_id = rs.getString("userid");
-				if(db_id.equals(id))
-				{	
-					answer = 1;
-					break;
-				}
+				answer = 1;
 			}
 			rs.close();
 		}

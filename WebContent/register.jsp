@@ -34,6 +34,8 @@
 	    	if(flag == true)
 	    	{
    	 			alert('중복된 아이디가 있습니다.');
+   	 			$("#userid").val = '';
+   	 			//alert($("#userid").val());
     		}
 	    	else
 	    	{
@@ -55,6 +57,12 @@
 	// form data validation check
 	function check()
 	{
+		if($("#userid").val == "" || $("#userid").val == null)
+		{
+			alert('아이디를 입력해주세요.');
+			return;
+		}
+		
 		var passwd = $("#passwd").val();
 		var passwd2 = $("#passwd2").val();
 		

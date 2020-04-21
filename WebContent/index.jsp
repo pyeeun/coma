@@ -157,6 +157,11 @@
 		$("body").css("background-color","#5D5D5D");
 		$(".terms-box").show();
 	}
+	function removeData()
+	{
+		$("input[type=text]").val("");
+		$("input[type=password]").val("");
+	}
 	$(document).ready(function() 
 	{
 		$(".login-box").hide();
@@ -166,6 +171,7 @@
 		// closing login form
 		$("#btn-lgn-close").click(function() 
 		{
+			removeData();
 			$(".wrap").show();
 			$("body").css("background-color","#FFFFFF");
 			$(".login-box").hide();
@@ -174,6 +180,7 @@
 		// closing register form
 		$("#btn-rgst-close").click(function() 
 		{
+			removeData();
 			$(".wrap").show();
 			$("body").css("background-color","#FFFFFF");
 			$(".register-box").hide();
@@ -182,6 +189,7 @@
 		// closing terms form
 		$("#btn-terms-close").click(function() 
 		{
+			removeData();
 			$(".wrap").show();
 			$("body").css("background-color","#FFFFFF");
 			$(".terms-box").hide();

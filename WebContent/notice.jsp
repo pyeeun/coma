@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*, coma.*"%>
 <!DOCTYPE html>
+
+<% request.setCharacterEncoding("UTF-8"); %>
+
+<jsp:useBean id="noticeBean" scope="page" class="coma.NoticesBean"/>
+<jsp:useBean id="notice" class="coma.Notices" />
+<jsp:setProperty name="notice" property="*" />
+
 <html>
 <head>
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
@@ -65,13 +72,22 @@
 			<th id="th-writer">작성자</th>
 			<th id="th-views">조회수</th>
 		</tr>
+		<%
+			ArrayList<Notices> noticeList = new ArrayList<Notices>();
+			noticeList = noticeBean.getDBList();
+			for(Notices n : noticeList)
+			{
+		%>
 		<tr>
 			<td><input type="checkbox"></td>
-			<td><a href="notice.jsp?id=1">sample</a></td>
-			<td>2020-04-21</td>
-			<td>yepark</td>
-			<td>5</td>
+			<td><a href="notice.jsp"+<%= n.getNoticeid() %>><%= n.getTitle() %></a></td>
+			<td><%= n.getRegister_date() %></td>
+			<td><%= n.getWriter() %></td>
+			<td><%= n.getViews() %></td>
 		</tr>
+		<%
+			}
+		%>
 	</table>
 </body>
 </html>

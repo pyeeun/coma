@@ -14,7 +14,6 @@
 </head>
 <body>
 <%
-	//request.setAttribute("users", Register.getDBList());
 	
 	if(Register.insertDB(users))
 		response.sendRedirect("index.jsp");

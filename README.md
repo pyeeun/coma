@@ -107,7 +107,7 @@ create table notices
    noticeid int not null primary key,
     title char(50) not null,
     content varchar(1000) not null,
-    regist_date datetime not null,
+    register_date datetime not null,
     update_date datetime null,
     delete_date datetime null,
     writer char(15) not null,
@@ -119,10 +119,10 @@ create table notices
 ```sql
 create table Q_A
 (
-   noticeid int not null primary key,
+   q_a_id int not null primary key,
     title char(50) not null,
     content varchar(1000) not null,
-    regist_date datetime not null,
+    register_date datetime not null,
     update_date datetime null,
     delete_date datetime null,
     writer char(15) not null,

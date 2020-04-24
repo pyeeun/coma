@@ -80,7 +80,7 @@
 		%>
 		<tr>
 			<td><input type="checkbox"></td>
-			<td><a href="notice.jsp"+<%= n.getNoticeid() %>><%= n.getTitle() %></a></td>
+			<td><a href="look_notice.jsp?id=<%= n.getNoticeid() %>"><%= n.getTitle() %></a></td>
 			<td><%= n.getRegister_date() %></td>
 			<td><%= n.getWriter() %></td>
 			<td><%= n.getViews() %></td>

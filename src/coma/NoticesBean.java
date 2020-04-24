@@ -7,16 +7,22 @@ import coma.connection;
 
 public class NoticesBean {
 	
-connection con = new connection();
+	connection con = new connection();
 	
 	public boolean insertDB(Notices notice)
 	{
 		con.connect();
-		String sql = "insert into notices value(?,?,?,sysdate(),null,null,?,0,?,?)";
+		String sql1 = "select noticeid from notices order by noticeid desc";
+		String sql2 = "insert into notices value(?,?,?,sysdate(),null,null,?,0,?,?)";
 		try
 		{
-			con.pstmt = con.conn.prepareStatement(sql);
-
+			con.pstmt = con.conn.prepareStatement(sql1);
+			con.pstmt.executeUpdate();
+			ResultSet rs = con.pstmt.executeQuery();
+			int notice_id = rs.getInt("noticeid") + 1;
+			con.pstmt.setInt(1, notice_id);
+			
+			con.pstmt = con.conn.prepareStatement(sql2);
 			con.pstmt.executeUpdate();
 		}
 		catch(SQLException e)
@@ -53,6 +59,33 @@ connection con = new connection();
 		}
 	}
 	
+	public void updateViews(int id)
+	{
+		con.connect();
+		String sql1 = "select views from notices where noticeid = ?";
+		String sql2 = "update notices set views = ? where noticeid = ?";
+		try
+		{
+			con.pstmt = con.conn.prepareStatement(sql1);
+			con.pstmt.setInt(1, id);
+			ResultSet rs = con.pstmt.executeQuery();
+			rs.next();
+			int views = rs.getInt("views") + 1;
+			con.pstmt = con.conn.prepareStatement(sql2);
+			con.pstmt.setInt(1, views);
+			con.pstmt.setInt(2,  id);
+			con.pstmt.executeUpdate();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			con.disconnect();
+		}
+	}
+	
 	public Notices getDB(int id)
 	{
 		con.connect();
@@ -72,6 +105,7 @@ connection con = new connection();
 			notice.setUpdate_date(rs.getString("update_date"));
 			notice.setDelete_date(rs.getString("delete_date"));
 			notice.setWriter(rs.getString("writer"));
+			notice.setViews(rs.getInt("views"));
 			notice.setFile1(rs.getString("file1"));
 			notice.setFile2(rs.getString("file2"));
 		}
@@ -106,6 +140,7 @@ connection con = new connection();
 				notice.setUpdate_date(rs.getString("update_date"));
 				notice.setDelete_date(rs.getString("delete_date"));
 				notice.setWriter(rs.getString("writer"));
+				notice.setViews(rs.getInt("views"));
 				notice.setFile1(rs.getString("file1"));
 				notice.setFile2(rs.getString("file2"));
 				if(notice.getDelete_date() == null)

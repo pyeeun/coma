@@ -20,6 +20,7 @@
 		q_aBean.updateViews(id);
 		text = q_aBean.getDB(id);
 	%>
+	<%= text.getViews() %>
 	<%= text.getContent() %>
 </body>
 </html>

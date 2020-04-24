@@ -4,9 +4,9 @@
 
 <% request.setCharacterEncoding("UTF-8"); %>
 
-<jsp:useBean id="noticeBean" scope="page" class="coma.NoticesBean"/>
-<jsp:useBean id="notice" class="coma.Notices" />
-<jsp:setProperty name="notice" property="*" />
+<jsp:useBean id="q_aBean" scope="page" class="coma.q_aBean"/>
+<jsp:useBean id="q_a" class="coma.q_a" />
+<jsp:setProperty name="q_a" property="*" />
 
 <html>
 <head>
@@ -16,11 +16,10 @@
 <body>
 	<%
 		int id = Integer.parseInt(request.getParameter("id"));
-		Notices n = new Notices();
-		noticeBean.updateViews(id);
-		n = noticeBean.getDB(id);
+		q_a text = new q_a();
+		q_aBean.updateViews(id);
+		text = q_aBean.getDB(id);
 	%>
-	<%= n.getViews() %>
-	<%= n.getContent() %>
+	<%= text.getContent() %>
 </body>
 </html>

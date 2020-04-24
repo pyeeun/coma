@@ -59,6 +59,33 @@ public class q_aBean {
 		}
 	}
 	
+	public void updateViews(int id)
+	{
+		con.connect();
+		String sql1 = "select views from Q_A where q_a_id = ?";
+		String sql2 = "update Q_A set views = ? where noticeid = ?";
+		try
+		{
+			con.pstmt = con.conn.prepareStatement(sql1);
+			con.pstmt.setInt(1, id);
+			ResultSet rs = con.pstmt.executeQuery();
+			rs.next();
+			int views = rs.getInt("views") + 1;
+			con.pstmt = con.conn.prepareStatement(sql2);
+			con.pstmt.setInt(1, views);
+			con.pstmt.setInt(2,  id);
+			con.pstmt.executeUpdate();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			con.disconnect();
+		}
+	}
+	
 	public q_a getDB(int id)
 	{
 		con.connect();

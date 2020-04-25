@@ -116,7 +116,7 @@
 	 	top: -10px;
 	 	left: 33px;
 	}
-	.login-box, .register-box, .terms-box
+	.login-box, .register-box, .terms-box, .notice-box
 	{
 		position: absolute;
 		background-color: #FFFFFF;
@@ -127,7 +127,7 @@
 	    transform: translate(-50%, -50%);
 	    z-index: 99;
 	}
-	#btn-lgn-close, #btn-rgst-close, #btn-terms-close
+	#btn-lgn-close, #btn-rgst-close, #btn-terms-close, #btn-notice-close
 	{
 		margin-top: 10px;
 		margin-left: 350px;
@@ -157,6 +157,12 @@
 		$("body").css("background-color","#5D5D5D");
 		$(".terms-box").show();
 	}
+	function showNotice()
+	{
+		$(".wrap").hide();
+		$("body").css("background-color","#5D5D5D");
+		$(".notice-box").show();
+	}
 	function removeData()
 	{
 		$("input[type=text]").val("");
@@ -167,6 +173,7 @@
 		$(".login-box").hide();
 		$(".register-box").hide();
 		$(".terms-box").hide();
+		$(".notice-box").hide();
 		
 		// closing login form
 		$("#btn-lgn-close").click(function() 
@@ -194,6 +201,15 @@
 			$("body").css("background-color","#FFFFFF");
 			$(".terms-box").hide();
 		});
+		
+		// closing terms form
+		$("#btn-notice-close").click(function() 
+		{
+			removeData();
+			$(".wrap").show();
+			$("body").css("background-color","#FFFFFF");
+			$(".notice-box").hide();
+		});
 	});
 	
 </script>
@@ -215,7 +231,7 @@
 			</div>
 		</div>
 		<div class="footer">
-			<a href="#">공지사항</a>/
+			<a href="javascript:void(0);" onclick="showNotice()">공지사항</a>/
 			<a href="#">Q&A</a>/
 			<a href="javascript:void(0);" onclick="showTerms()">이용약관</a>/
 			<a href="#">개인정보처리방침</a>
@@ -233,6 +249,10 @@
 	<div class="terms-box" style="width:800px; height:720px">
 		<input type="button" id="btn-terms-close" value="X" style="margin-left: 750px"/>
 		<jsp:include page="terms.jsp"/>
+	</div>
+	<div class="notice-box" style="width:1000px; height:720px">
+		<input type="button" id="btn-notice-close" value="X" style="margin-left: 950px"/>
+		<jsp:include page="notice.jsp"/>
 	</div>
 </body>
 </html>

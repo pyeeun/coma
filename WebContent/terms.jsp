@@ -18,7 +18,7 @@
 </head>
 <body>
 	<img src="images\logo.png" width="200px" style="margin:auto; padding:auto;"/><br>
-	<textarea rows="30" readonly>
+	<textarea rows="28" readonly>
 	제1장 총칙
 
 	제1조(목적)

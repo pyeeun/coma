@@ -20,7 +20,7 @@
 <style>
 	table
 	{
-		width: 100%;
+		width: 95%;
 		border: 1px solid #eee;
 		font-family: 'Noto Sans KR', sans-serif;
 	}
@@ -31,6 +31,7 @@
 		font-size: 13px;
 		text-decoration: none;
 		text-align: center;
+		height: 20px;
 	}
 	tr
 	{
@@ -47,11 +48,11 @@
 	}
 	#th-title
 	{
-		width: 60%;
+		width: 50%;
 	}
 	#th-rdate
 	{
-		width: 10%;
+		width: 20%;
 	}
 	#th-writer
 	{
@@ -61,10 +62,44 @@
 	{
 		width: 10%;
 	}
+	
+	.btn-group
+	{
+		width: 97%;
+		text-align: right;
+		margin-top: 30px;
+		margin-bottom: 10px;
+	}
+	.btn-group > input
+	{
+		width: 50px;
+		height: 25px;
+		margin-top: 15px;
+		background-color: #00B4FF;
+		border: none;
+		font-size: 14px;
+		color: #FFFFFF;
+		cursor: pointer;
+	}
 </style>
+<script>
+	$(document).ready(function() {
+		
+	});
+</script>
 </head>
 <body>
-	<table>
+	<div class="btn-group">
+		<input type="button" id="btn-write" value="작성"/>
+		<input type="button" id="btn-modify" value="수정"/>
+		<input type="button" id="btn-delete" value="삭제"/>
+	</div>
+	<table id="notice-list" align="center">
+		<!-- 
+		<tr colspan="5" style="text-align:right">
+			<input type="button" id="btn-write" value="작성"/>
+		</tr>
+		-->
 		<tr>
 			<th id="th-id"></th>
 			<th id="th-title">제목</th>
@@ -80,7 +115,7 @@
 		%>
 		<tr>
 			<td><input type="checkbox"></td>
-			<td><a href="look_notice.jsp?id=<%= n.getNoticeid() %>"><%= n.getTitle() %></a></td>
+			<td><a href="notice.jsp?id=<%= n.getNoticeid() %>"><%= n.getTitle() %></a></td>
 			<td><%= n.getRegister_date() %></td>
 			<td><%= n.getWriter() %></td>
 			<td><%= n.getViews() %></td>

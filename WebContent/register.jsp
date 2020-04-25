@@ -11,7 +11,7 @@
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script>
-
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <iframe width=800 name="por" width="0" height="0" frameborder="0" scrolling="no"></iframe>
 <form method="post" action="" name="form2"></form>
 
@@ -73,15 +73,24 @@
 			return;
 		}
 	}
+	
+	// search address
+	function searchAddr()
+	{
+		new daum.Postcode(
+		{
+			oncomplete: function(data)
+			{
+				var roadAddr = data.roadAddress;
+				$("#area").val(roadAddr);
+			}
+		}).open();
+	}
 </script>
 <style>
 	html, body, input, p, span, div
 	{
 		font-family: 'Noto Sans KR', sans-serif;
-	}
-	#register-form
-	{
-		margin-top: 30px;
 	}
 	.rgst-input
 	{
@@ -114,7 +123,7 @@
 			<input type="password" name="passwd" id="passwd" class="rgst-input" placeholder="비밀번호"/><br>
 			<input type="password" name="passwd2" id="passwd2" class="rgst-input" placeholder="비밀번호 확인"/><br>
 			<input type="text" name="birth" id="birth" class="rgst-input" placeholder="생년월일" onfocus="(this.type='date')"/><br>
-			<input type="text" name="area" id="area" class="rgst-input" placeholder="지역설정"/><br>
+			<input type="text" name="area" id="area" class="rgst-input" placeholder="지역설정" onclick="searchAddr()"/><br>
 			<input type="text" name="email" id="email" class="rgst-input" placeholder="이메일"/><br>
 			<input type="checkbox" name="maskalarm_yn" id="maskalarm_yn" style="margin-top: 15px; margin-bottom: 10px"/>
 			<label for="maskalarm_yn" style="color: #5D5D5D; font-size: 14px;">마스크 알림을 받겠습니다.</label><br>

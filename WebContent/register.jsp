@@ -17,11 +17,16 @@
 
 <script language=javascript>
 	// id check
+	<%!
+		boolean b = false;
+	%>
 	$(document).ready(function()
 	{
 		<%   
 			String id = request.getParameter("name");
 			boolean a = Register.IDcheck(id);
+			if(id != null)
+				b = a;
 		%>
 	    var flag = <%= a %>;
 	    var userid = "<%= id %>";
@@ -70,6 +75,14 @@
 		if(passwd != passwd2)
 		{
 			alert('비밀번호가 일치하지 않습니다.');
+			return;
+		}
+		
+		var flag = <%= b %>;
+		console.log(flag);
+		if(flag == true)
+		{
+			alert('ID가 중복되었습니다.');
 			return;
 		}
 	}

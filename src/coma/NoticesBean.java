@@ -17,12 +17,17 @@ public class NoticesBean {
 		try
 		{
 			con.pstmt = con.conn.prepareStatement(sql1);
-			con.pstmt.executeUpdate();
 			ResultSet rs = con.pstmt.executeQuery();
+			rs.next();
 			int notice_id = rs.getInt("noticeid") + 1;
-			con.pstmt.setInt(1, notice_id);
 			
 			con.pstmt = con.conn.prepareStatement(sql2);
+			con.pstmt.setInt(1, notice_id);
+			con.pstmt.setString(2, notice.getTitle());
+			con.pstmt.setString(3, notice.getContent());
+			con.pstmt.setString(4, "writer");
+			con.pstmt.setString(5, null);
+			con.pstmt.setString(6, null);
 			con.pstmt.executeUpdate();
 		}
 		catch(SQLException e)

@@ -90,7 +90,7 @@
 </head>
 <body>
 	<div class="btn-group">
-		<input type="button" id="btn-write" value="작성"/>
+		<a href="write_notice.jsp"><input type="button" id="btn-write" value="작성"/></a>
 		<input type="button" id="btn-modify" value="수정"/>
 		<input type="button" id="btn-delete" value="삭제"/>
 	</div>
@@ -115,7 +115,7 @@
 		%>
 		<tr>
 			<td><input type="checkbox"></td>
-			<td><a href="notice.jsp?id=<%= n.getNoticeid() %>"><%= n.getTitle() %></a></td>
+			<td><a href="look_notice.jsp?id=<%= n.getNoticeid() %>"><%= n.getTitle() %></a></td>
 			<td><%= n.getRegister_date() %></td>
 			<td><%= n.getWriter() %></td>
 			<td><%= n.getViews() %></td>

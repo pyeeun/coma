@@ -12,7 +12,7 @@ public class RegisterBean {
 	public boolean insertDB(Users users)
 	{
 		con.connect();
-		String sql = "insert into users value(?,?,?,?,?,?,sysdate(),sysdate(),?,true,null)";
+		String sql = "insert into users value(?,?,?,?,?,sysdate(),sysdate(),?,true,null)";
 		try
 		{
 			
@@ -20,14 +20,13 @@ public class RegisterBean {
 			con.pstmt.setString(1, users.getUserid());
 			con.pstmt.setString(2, users.getPasswd());
 			con.pstmt.setString(3, users.getBirth());
-			con.pstmt.setDouble(4, 132.62);
-			con.pstmt.setDouble(5, 84.12);;
-			con.pstmt.setString(6, users.getEmail());
+			con.pstmt.setString(4, users.getArea());
+			con.pstmt.setString(5, users.getEmail());
 			
 			if(users.getMaskalarm_yn() == null)
-				con.pstmt.setBoolean(7, false);
+				con.pstmt.setBoolean(6, false);
 			else
-				con.pstmt.setBoolean(7, true);
+				con.pstmt.setBoolean(6, true);
 			con.pstmt.executeUpdate();
 		}
 		catch(SQLException e)

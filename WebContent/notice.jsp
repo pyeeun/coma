@@ -18,9 +18,33 @@
 <meta charset="UTF-8">
 <title>Notice</title>
 <style>
+	html, body
+	{
+		margin: 0;
+		padding: 0;
+		height: 100%;
+		font-family: 'Noto Sans KR', sans-serif;
+	}
+	.header 
+	{
+		height: 47px;
+		padding: 20px 30px 0px 0px;
+		text-align: right;
+		-webkit-box-shadow: 0 5px 5px #EEEEEE;
+		-moz-box-shadow: 0 5px 5px #EEEEEE;
+		box-shadow: 0 5px 5px #EEEEEE;
+	}
+	.header a
+	{
+		color: #000;
+		font-size: 18px;
+		text-decoration: none;
+		padding: 5px 15px 5px 15px;
+		margin: 0px 5px 0px 5px;
+	}
 	table
 	{
-		width: 95%;
+		width: 65%;
 		border: 1px solid #eee;
 		font-family: 'Noto Sans KR', sans-serif;
 	}
@@ -65,17 +89,17 @@
 	
 	.btn-group
 	{
-		width: 97%;
+		width: 82%;
 		text-align: right;
 		margin-top: 30px;
 		margin-bottom: 10px;
 	}
-	.btn-group > input
+	.btn-group input
 	{
 		width: 50px;
 		height: 25px;
 		margin-top: 15px;
-		background-color: #00B4FF;
+		background-color: #5D5D5D;
 		border: none;
 		font-size: 14px;
 		color: #FFFFFF;
@@ -89,10 +113,15 @@
 </script>
 </head>
 <body>
+	<div class="header">
+		<a href="index.jsp">홈</a>
+		<a href="javascript:void(0);" onclick="showLogin()">로그인</a>
+		<a href="javascript:void(0);" onclick="showRegister()">회원가입</a>
+	</div>
+	<br/>
+	<p align="center" style="font-size: 30px">[ 공지사항 ]</p>
 	<div class="btn-group">
 		<a href="write_notice.jsp"><input type="button" id="btn-write" value="작성"/></a>
-		<input type="button" id="btn-modify" value="수정"/>
-		<input type="button" id="btn-delete" value="삭제"/>
 	</div>
 	<table id="notice-list" align="center">
 		<!-- 
@@ -101,7 +130,6 @@
 		</tr>
 		-->
 		<tr>
-			<th id="th-id"></th>
 			<th id="th-title">제목</th>
 			<th id="th-rdate">작성일시</th>
 			<th id="th-writer">작성자</th>
@@ -114,8 +142,7 @@
 			{
 		%>
 		<tr>
-			<td><input type="checkbox"></td>
-			<td><a href="look_notice.jsp?id=<%= n.getNoticeid() %>"><%= n.getTitle() %></a></td>
+			<td style="text-align: left; padding-left: 5px;"><a href="look_notice.jsp?id=<%= n.getNoticeid() %>"><%= n.getTitle() %></a></td>
 			<td><%= n.getRegister_date() %></td>
 			<td><%= n.getWriter() %></td>
 			<td><%= n.getViews() %></td>

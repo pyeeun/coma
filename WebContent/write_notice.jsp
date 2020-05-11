@@ -96,10 +96,12 @@ html, body
 	</div>
 	<br/>
 	<p align="center" style="font-size: 30px">[ 공지사항 ]</p>
+	
+	
+	<form method="post" action="handle_write_notice.jsp" name="form1">
 	<div class="btn-group">
 		<a href=""><input type="submit" id="btn-write" value="작성"/></a>
 	</div>
-	<form method="post" action="handle_write_notice.jsp" name="form1">
 	<table align="center">
 		<tr>
 			<th>제목</th>

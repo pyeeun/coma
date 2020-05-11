@@ -164,4 +164,25 @@ public class NoticesBean {
 		return noticeList;
 	}
 	
+	public boolean deleteDB(int id)
+	{
+		con.connect();
+		String sql = "delete from notices where noticeid = ?";
+		try
+		{
+			con.pstmt = con.conn.prepareStatement(sql);
+			con.pstmt.setInt(1, id);
+			con.pstmt.executeUpdate();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+		finally
+		{
+			con.disconnect();
+		}
+		return true;
+	}
 }

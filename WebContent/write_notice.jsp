@@ -100,7 +100,8 @@ html, body
 	
 	<form method="post" action="handle_write_notice.jsp" name="form1">
 	<div class="btn-group">
-		<a href=""><input type="submit" id="btn-write" value="작성"/></a>
+		<a href="notice.jsp"><input type="button" value="이전"/></a>
+		<input type="submit" id="btn-write" value="작성"/>
 	</div>
 	<table align="center">
 		<tr>

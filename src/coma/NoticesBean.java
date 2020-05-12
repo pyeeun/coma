@@ -43,25 +43,29 @@ public class NoticesBean {
 	}
 	
 	
-	public void updateDB()
+	public Boolean updateDB(Notices notice, int id)
 	{
 		con.connect();
-		String sql = "select * from notices where noticeid = ?";
+		String sql = "update notices set title = ?, content = ?, update_date = sysdate() where noticeid = ?";
+
 		try
 		{
 			con.pstmt = con.conn.prepareStatement(sql);
-			
+			con.pstmt.setString(1, notice.getTitle());
+			con.pstmt.setString(2, notice.getContent());
+			con.pstmt.setInt(3, id);
 			con.pstmt.executeUpdate();
 		}
 		catch(SQLException e)
 		{
 			e.printStackTrace();
-			return;
+			return false;
 		}
 		finally
 		{
 			con.disconnect();
 		}
+		return true;
 	}
 	
 	public void updateViews(int id)

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, coma.*"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <% request.setCharacterEncoding("UTF-8"); %>
 
@@ -10,15 +10,10 @@
 
 <html>
 <head>
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-<script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
-<meta charset="UTF-8">
-<title>Q&A</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>update_qa</title>
 <style>
-	html, body
+html, body
 	{
 		margin: 0;
 		padding: 0;
@@ -47,6 +42,7 @@
 		width: 65%;
 		border: 1px solid #eee;
 		font-family: 'Noto Sans KR', sans-serif;
+		margin-bottom: 50px;
 	}
 	th
 	{
@@ -64,32 +60,23 @@
 	td
 	{
 		font-size: 12px;
-		text-align: center;
+		text-align: left;
 	}
-	#th-id
+	input[type=text]
 	{
-		width: 5%;
+		width: 99%;
+		text-align: left;
 	}
-	#th-title
+	#contents
 	{
-		width: 50%;
+		height: 300px;
+		vertical-align: top;
+		text-align:center;
+		padding: 0px;
 	}
-	#th-rdate
-	{
-		width: 20%;
-	}
-	#th-writer
-	{
-		width: 15%;
-	}
-	#th-views
-	{
-		width: 10%;
-	}
-	
 	.btn-group
 	{
-		width: 82%;
+		width: 82.5%;
 		text-align: right;
 		margin-top: 30px;
 		margin-bottom: 10px;
@@ -106,13 +93,14 @@
 		cursor: pointer;
 	}
 </style>
-<script>
-	$(document).ready(function() {
-		
-	});
-</script>
 </head>
 <body>
+
+<%
+	int id = Integer.parseInt(request.getParameter("id"));
+	qa n = new qa();
+	n = qaBean.getDB(id);
+%>
 	<div class="header">
 		<a href="index.jsp">홈</a>
 		<a href="javascript:void(0);" onclick="showLogin()">로그인</a>
@@ -120,36 +108,33 @@
 	</div>
 	<br/>
 	<p align="center" style="font-size: 30px">[ Q & A ]</p>
+	<form method="post" action="handle_update_qa.jsp?id=<%=id%>" name="form1">
 	<div class="btn-group">
-		<a href="write_qa.jsp"><input type="button" id="btn-write" value="작성"/></a>
+		<a href="look_qa.jsp?id=<%=id%>"><input type="button" value="이전"/></a>
+		<input type="submit" id="btn-write" value="작성"/>
 	</div>
-	<table id="qa-list" align="center">
-		<!-- 
-		<tr colspan="5" style="text-align:right">
-			<input type="button" id="btn-write" value="작성"/>
-		</tr>
-		-->
+	<table align="center">
 		<tr>
-			<th id="th-title">제목</th>
-			<th id="th-rdate">작성일시</th>
-			<th id="th-writer">작성자</th>
-			<th id="th-views">조회수</th>
+			<th>제목</th>
+			<td>
+				<input type="text" name="title" id="title" placeholder="제목" value="<%= n.getTitle() %>" />
+			</td>
 		</tr>
-		<%
-			ArrayList<qa> qa_List = new ArrayList<qa>();
-			qa_List = qaBean.getDBList();
-			for(qa n : qa_List)
-			{
-		%>
 		<tr>
-			<td style="text-align: left; padding-left: 5px;"><a href="look_qa.jsp?id=<%= n.getQa_id() %>"><%= n.getTitle() %></a></td>
-			<td><%= n.getRegister_date() %></td>
-			<td><%= n.getWriter() %></td>
-			<td><%= n.getViews() %></td>
+			<th>작성자</th>
+			<td>
+				
+			</td>
 		</tr>
-		<%
-			}
-		%>
+		<tr>
+			<th colspan="2">내용</th>
+		</tr>
+		<tr>
+			<td colspan="2" id="contents">
+				<textarea style="width: 99.5%" rows="30" name="content" id="content"><%= n.getContent() %></textarea>
+			</td>
+		</tr>
 	</table>
+	</form>
 </body>
 </html>

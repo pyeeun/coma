@@ -2,27 +2,34 @@ package coma;
 
 import java.sql.*;
 import java.util.*;
-import coma.q_a;
+import coma.qa;
 import coma.connection;
 
-public class q_aBean {
+public class qaBean {
 	
 	connection con = new connection();
 	
-	public boolean insertDB(q_a text)
+	public boolean insertDB(qa text)
 	{
 		con.connect();
 		String sql1 = "select q_a_id from Q_A order by q_a_id desc";
-		String sql2 = "insert into Q_A value(?,?,?,sysdate(),null,null,?,0,?,?)";
+		String sql2 = "insert into Q_A value(?,?,?,sysdate(),null,null,?,0,?,?,?,?)";
 		try
 		{
 			con.pstmt = con.conn.prepareStatement(sql1);
-			con.pstmt.executeUpdate();
 			ResultSet rs = con.pstmt.executeQuery();
-			int q_a_id = rs.getInt("q_a_id") + 1;
-			con.pstmt.setInt(1, q_a_id);
+			rs.next();
+			int qa_id = rs.getInt("q_a_id") + 1;
 			
 			con.pstmt = con.conn.prepareStatement(sql2);
+			con.pstmt.setInt(1, qa_id);
+			con.pstmt.setString(2, text.getTitle());
+			con.pstmt.setString(3, text.getContent());
+			con.pstmt.setString(4, "writer");
+			con.pstmt.setString(5, null);
+			con.pstmt.setString(6, null);
+			con.pstmt.setString(7, text.getPasswd());
+			con.pstmt.setString(8, "category");
 			con.pstmt.executeUpdate();
 		}
 		catch(SQLException e)
@@ -38,32 +45,35 @@ public class q_aBean {
 	}
 	
 	
-	public void updateDB()
+	public Boolean updateDB(qa text, int id)
 	{
 		con.connect();
-		String sql = "select * from q_a where q_a_id = ?";
+		String sql = "update q_a set title = ?, content = ?, update_date = sysdate() where q_a_id = ?";
+
 		try
 		{
 			con.pstmt = con.conn.prepareStatement(sql);
-			
+			con.pstmt.setString(1, text.getTitle());
+			con.pstmt.setString(2, text.getContent());
+			con.pstmt.setInt(3, id);
 			con.pstmt.executeUpdate();
 		}
 		catch(SQLException e)
 		{
 			e.printStackTrace();
-			return;
+			return false;
 		}
 		finally
 		{
 			con.disconnect();
 		}
+		return true;
 	}
-	
 	public void updateViews(int id)
 	{
 		con.connect();
 		String sql1 = "select views from Q_A where q_a_id = ?";
-		String sql2 = "update Q_A set views = ? where noticeid = ?";
+		String sql2 = "update Q_A set views = ? where q_a_id = ?";
 		try
 		{
 			con.pstmt = con.conn.prepareStatement(sql1);
@@ -86,10 +96,10 @@ public class q_aBean {
 		}
 	}
 	
-	public q_a getDB(int id)
+	public qa getDB(int id)
 	{
 		con.connect();
-		q_a text = new q_a();
+		qa text = new qa();
 		String sql = "select * from q_a where q_a_id = ?";
 		
 		try
@@ -98,7 +108,7 @@ public class q_aBean {
 			con.pstmt.setInt(1, id);
 			ResultSet rs = con.pstmt.executeQuery();
 			rs.next();
-			text.setQ_a_id(rs.getInt("q_a_id"));
+			text.setQa_id(rs.getInt("q_a_id"));
 			text.setTitle(rs.getString("title"));
 			text.setContent(rs.getString("content"));
 			text.setRegister_date(rs.getString("register_date"));
@@ -122,10 +132,10 @@ public class q_aBean {
 		return text;
 	}
 	
-	public ArrayList<q_a> getDBList()
+	public ArrayList<qa> getDBList()
 	{
 		con.connect();
-		ArrayList<q_a> q_a_List = new ArrayList<q_a>();
+		ArrayList<qa> q_a_List = new ArrayList<qa>();
 		String sql = "select * from Q_A order by q_a_id desc";
 		
 		try
@@ -134,8 +144,8 @@ public class q_aBean {
 			ResultSet rs = con.pstmt.executeQuery();
 			while(rs.next())
 			{
-				q_a text = new q_a();
-				text.setQ_a_id(rs.getInt("q_a_id"));
+				qa text = new qa();
+				text.setQa_id(rs.getInt("q_a_id"));
 				text.setTitle(rs.getString("title"));
 				text.setContent(rs.getString("content"));
 				text.setRegister_date(rs.getString("register_date"));
@@ -161,4 +171,25 @@ public class q_aBean {
 		return q_a_List;
 	}
 	
+	public boolean deleteDB(int id)
+	{
+		con.connect();
+		String sql = "delete from q_a where q_a_id = ?";
+		try
+		{
+			con.pstmt = con.conn.prepareStatement(sql);
+			con.pstmt.setInt(1, id);
+			con.pstmt.executeUpdate();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+		finally
+		{
+			con.disconnect();
+		}
+		return true;
+	}
 }

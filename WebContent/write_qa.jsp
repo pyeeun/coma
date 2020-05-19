@@ -1,20 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, coma.*"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-<% request.setCharacterEncoding("UTF-8"); %>
-
-<jsp:useBean id="qaBean" scope="page" class="coma.qaBean"/>
-<jsp:useBean id="qa" class="coma.qa" />
-<jsp:setProperty name="qa" property="*" />
-
 <html>
 <head>
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Look QA</title>
+<title>write_qa</title>
 <style>
-	html, body
+html, body
 	{
 		margin: 0;
 		padding: 0;
@@ -40,8 +33,8 @@
 	}
 	table
 	{
-		width: 55%;
-		border: 1px solid #ddd;
+		width: 65%;
+		border: 1px solid #eee;
 		font-family: 'Noto Sans KR', sans-serif;
 		margin-bottom: 50px;
 	}
@@ -52,29 +45,32 @@
 		font-size: 13px;
 		text-decoration: none;
 		text-align: center;
-		width: 30%;
 		height: 20px;
 	}
 	tr
 	{
-		border-top: 1px solid #ddd;
+		border-top: 1px solid #eee;
 	}
 	td
 	{
 		font-size: 12px;
-		padding-left: 10px;
+		text-align: left;
+	}
+	input[type=text]
+	{
+		width: 99%;
 		text-align: left;
 	}
 	#contents
 	{
-		height: 500px;
+		height: 300px;
 		vertical-align: top;
 		text-align:center;
 		padding: 0px;
 	}
 	.btn-group
 	{
-		width: 77.5%;
+		width: 82.5%;
 		text-align: right;
 		margin-top: 30px;
 		margin-bottom: 10px;
@@ -93,12 +89,6 @@
 </style>
 </head>
 <body>
-	<%
-		int id = Integer.parseInt(request.getParameter("id"));
-		qa text = new qa();
-		qaBean.updateViews(id);
-		text = qaBean.getDB(id);
-	%>
 	<div class="header">
 		<a href="index.jsp">홈</a>
 		<a href="javascript:void(0);" onclick="showLogin()">로그인</a>
@@ -106,28 +96,30 @@
 	</div>
 	<br/>
 	<p align="center" style="font-size: 30px">[ Q & A ]</p>
+	
+	
+	<form method="post" action="handle_write_qa.jsp" name="form1">
 	<div class="btn-group">
 		<a href="qa.jsp"><input type="button" value="이전"/></a>
-		<a href="update_qa.jsp?id=<%=id%>"><input type="button" id="btn-modify" value="수정"/></a>
-		<a href="delete_qa.jsp?id=<%=id%>" onclick="return confirm('삭제하시겠습니까?')"><input type="button" id="btn-delete" value="삭제"/></a>
+		<input type="submit" id="btn-write" value="작성"/>
 	</div>
 	<table align="center">
 		<tr>
 			<th>제목</th>
 			<td>
-			<%= text.getTitle() %>	
+				<input type="text" name="title" id="title" placeholder="제목"/>
 			</td>
 		</tr>
 		<tr>
 			<th>작성자</th>
 			<td>
-			<%= text.getWriter() %>	
+				
 			</td>
 		</tr>
 		<tr>
-			<th>작성일시</th>
+			<th>비밀번호</th>
 			<td>
-			<%= text.getRegister_date() %>	
+				<input type="password" name="passwd" id="passwd" placeholder="비밀번호"/>
 			</td>
 		</tr>
 		<tr>
@@ -135,9 +127,11 @@
 		</tr>
 		<tr>
 			<td colspan="2" id="contents">
-			<%= text.getContent() %>
+				<textarea style="width: 99.5%" rows="30" name="content" id="content"></textarea>
 			</td>
 		</tr>
 	</table>
+	</form>
+	
 </body>
 </html>

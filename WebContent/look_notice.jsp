@@ -107,26 +107,27 @@
 	<br/>
 	<p align="center" style="font-size: 30px">[ 공지사항 ]</p>
 	<div class="btn-group">
-		<a href=""><input type="button" id="btn-modify" value="수정"/></a>
-		<a href=""><input type="button" id="btn-delete" value="삭제"/></a>
+		<a href="notice.jsp"><input type="button" value="이전"/></a>
+		<a href="update_notice.jsp?id=<%=id%>"><input type="button" id="btn-modify" value="수정"/></a>
+		<a href="delete_notice.jsp?id=<%=id%>" onclick="return confirm('삭제하시겠습니까?')"><input type="button" id="btn-delete" value="삭제"/></a>
 	</div>
 	<table align="center">
 		<tr>
 			<th>제목</th>
 			<td>
-				
+			<%= n.getTitle() %>	
 			</td>
 		</tr>
 		<tr>
 			<th>작성자</th>
 			<td>
-				
+			<%= n.getWriter() %>	
 			</td>
 		</tr>
 		<tr>
 			<th>작성일시</th>
 			<td>
-				
+			<%= n.getRegister_date() %>	
 			</td>
 		</tr>
 		<tr>

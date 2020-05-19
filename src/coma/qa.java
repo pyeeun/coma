@@ -1,8 +1,8 @@
 package coma;
 
-public class q_a {
+public class qa {
 	
-	private int q_a_id;
+	private int qa_id;
 	private String title;
 	private String content;
 	private String register_date;
@@ -15,11 +15,11 @@ public class q_a {
 	private String passwd;
 	private String category;
 	
-	public int getQ_a_id() {
-		return q_a_id;
+	public int getQa_id() {
+		return qa_id;
 	}
-	public void setQ_a_id(int q_a_id) {
-		this.q_a_id = q_a_id;
+	public void setQa_id(int qa_id) {
+		this.qa_id = qa_id;
 	}
 	public String getTitle() {
 		return title;

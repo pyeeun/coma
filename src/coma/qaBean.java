@@ -155,6 +155,8 @@ public class qaBean {
 				text.setViews(rs.getInt("views"));
 				text.setFile1(rs.getString("file1"));
 				text.setFile2(rs.getString("file2"));
+				text.setPasswd(rs.getString("passwd"));
+				text.setCategory(rs.getString("category"));
 				if(text.getDelete_date() == null)
 					q_a_List.add(text);
 			}

@@ -12,7 +12,7 @@
 <head>
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Look Notice</title>
+<title>Look QA</title>
 <style>
 	html, body
 	{

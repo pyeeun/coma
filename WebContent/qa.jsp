@@ -15,6 +15,31 @@
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script>
+  
+<script language="javascript">
+	function check(pw, id)
+	{
+		var passwd1 = pw;
+		if(passwd1 == null)
+		{
+			location.href="look_qa.jsp?id="+id;
+			return true;
+		}
+		var passwd2 = prompt("비밀번호를 입력하세요.");
+		
+		if(passwd1 == passwd2)
+		{
+			location.href="look_qa.jsp?id="+id;
+			return true;
+		}
+		else
+		{
+			alert("비밀번호가 일치하지 않습니다.");
+			location.href="qa.jsp";
+			return false;
+		}
+	}
+</script>
 <meta charset="UTF-8">
 <title>Q&A</title>
 <style>
@@ -142,7 +167,7 @@
 			{
 		%>
 		<tr>
-			<td style="text-align: left; padding-left: 5px;"><a href="look_qa.jsp?id=<%= n.getQa_id() %>"><%= n.getTitle() %></a></td>
+			<td style="text-align: left; padding-left: 5px;"><a href="#" onclick="check(<%=n.getPasswd()%>, <%= n.getQa_id() %>);"><%= n.getTitle() %></a></td>
 			<td><%= n.getRegister_date() %></td>
 			<td><%= n.getWriter() %></td>
 			<td><%= n.getViews() %></td>

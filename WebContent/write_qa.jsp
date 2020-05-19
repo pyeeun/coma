@@ -119,7 +119,7 @@ html, body
 		<tr>
 			<th>비밀번호</th>
 			<td>
-				<input type="text" name="passwd" id="passwd" placeholder="비밀번호"/>
+				<input type="password" name="passwd" id="passwd" placeholder="비밀번호"/>
 			</td>
 		</tr>
 		<tr>
